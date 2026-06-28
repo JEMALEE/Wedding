@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jemmy & Maggie Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+TC:wght@200;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        var submitted = false;
+    </script>
+    <style>
+        :root {
+            --morandi-gold: #d4a373;
+            --morandi-sage: #8da399;
+            --bg-cream: #fdfaf7;
+            --text-dark: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .en { font-family: 'Cormorant Garamond', serif; }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+        }
+
+        .hero-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            /* 強制顯示卡硬體加速以提升網頁清晰度 */
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* 漸層遮罩：僅覆蓋底部文字區域，完全保護中上方人臉 */
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45%;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .timer-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(212, 163, 115, 0.1);
+            min-width: 85px;
+            padding: 1.5rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(212, 163, 115, 0.2);
+            margin: 0 1.5rem;
+        }
+
+        .v-card {
+            border-left: 2px solid var(--morandi-gold);
+            padding-left: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        input, select, textarea {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 100%;
+            transition: all 0.3s;
+            background: white;
+            appearance: none;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--morandi-gold);
+            box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.1);
+            outline: none;
+        }
+
+        .btn-submit {
+            background-color: var(--morandi-gold);
+            color: white;
+            letter-spacing: 0.3em;
+            transition: all 0.4s;
+        }
+        
+        .btn-submit:hover {
+            background-color: #bc8a5f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(188, 138, 95, 0.2);
+        }
+
+        .no-wrap { 
+            white-space: nowrap; 
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-screen-xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-xl font-semibold tracking-[0.2em] text-[#d4a373] en">J & M</div>
+            <div class="hidden md:flex space-x-12 text-[12px] tracking-[0.2em] font-medium text-gray-500">
+                <a href="#about" class="hover:text-[#d4a373] transition">關於我們</a>
+                <a href="#details" class="hover:text-[#d4a373] transition">婚禮詳情</a>
+                <a href="#register" class="hover:text-[#d4a373] transition">出席回函</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-container flex items-end justify-center pb-24 md:pb-32">
+        <img src="https://i.postimg.cc/y6cwNd03/7392111E-58A5-4E99-BE6B-B984931E6336.jpg" alt="Jemmy & Maggie" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="absolute text-center text-white px-4 z-10 w-full">
+            <h1 class="en text-4xl md:text-7xl font-light tracking-[0.1em] mb-4 whitespace-nowrap">Jemmy & Maggie</h1>
+            <p class="en text-[11px] md:text-sm tracking-[0.4em] mb-8 opacity-90 uppercase font-light">one day, one love, one forever</p>
+            <div class="w-12 h-[1px] bg-white mx-auto mb-8 opacity-50"></div>
+            <p class="text-base md:text-lg tracking-[0.5em] font-light">2027 . 01 . 23</p>
+        </div>
+    </header>
+
+    <section id="about" class="py-32 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl mb-16 text-[#d4a373] tracking-[0.4em] font-light italic">Wedding Countdown</h2>
+            
+            <div id="countdown" class="flex justify-center items-center flex-wrap gap-4 md:gap-0 mb-24">
+                <div class="timer-card">
+                    <span id="days" class="text-4xl font-light en text-[#d4a373]">00</span>
+                    <span class="text-[10px] tracking-[0.2em] text-gray-400 mt-2 uppercase">Days</span>
+                </div>
+                <div class="timer-divider hidden sm:block"></div>
+                <div class="timer-card">
+                    <span id="hours" class="text-4xl font-light en text-[#d4a373]">00</span>
+                    <span class="text-[10px] tracking-[0.2em] text-gray-400 mt-2 uppercase">Hours</span>
+                </div>
+                <div class="timer-divider hidden sm:block"></div>
+                <div class="timer-card">
+                    <span id="minutes" class="text-4xl font-light en text-[#d4a373]">00</span>
+                    <span class="text-[10px] tracking-[0.2em] text-gray-400 mt-2 uppercase">Mins</span>
+                </div>
+                <div class="timer-divider hidden sm:block"></div>
+                <div class="timer-card">
+                    <span id="seconds" class="text-4xl font-light en text-[#d4a373]">00</span>
+                    <span class="text-[10px] tracking-[0.2em] text-gray-400 mt-2 uppercase">Secs</span>
+                </div>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-8">
+                <p class="text-lg text-gray-600 leading-relaxed tracking-[0.2em] font-light">
+                    在人生無數可能的道路中，命運最終讓我們相遇。
+                </p>
+                <p class="text-gray-500 leading-loose tracking-[0.2em] font-light">
+                    誠摯邀請您見證我們的愛情故事邁向下一個篇章，<br>
+                    與我們一同慶祝這份永恆的承諾 🤍
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="py-32 px-6 bg-[#fdfaf7]">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 items-start">
+                <div class="space-y-12">
+                    <div class="v-card">
+                        <h2 class="text-2xl mb-12 text-[#d4a373] tracking-[0.2em] font-medium">儀式資訊</h2>
+                        <div class="space-y-10">
+                            <div>
+                                <p class="text-[11px] text-[#8da399] tracking-[0.2em] mb-2 uppercase en font-bold">Venue</p>
+                                <p class="text-xl font-light text-gray-600 no-wrap">台中日月千禧酒店</p>
+                                <p class="text-sm text-gray-400 mt-1 no-wrap tracking-wide">台中市西屯區市政路77號</p>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-[#8da399] tracking-[0.2em] mb-2 uppercase en font-bold">Schedule</p>
+                                <p class="text-[15px] font-light text-gray-500">17:30 入場 | 18:00 典禮開始</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="v-card">
+                        <h2 class="text-2xl mb-10 text-[#d4a373] tracking-[0.2em] font-medium">著裝守則 DRESS CODE</h2>
+                        <div class="flex items-center mb-6 space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-white border border-gray-200 shadow-sm" title="白色"></div>
+                            <div class="w-6 h-6 rounded-full bg-[#EAE0D5] border border-gray-100 shadow-sm" title="燕麥色"></div>
+                            <div class="w-6 h-6 rounded-full bg-[#f4dada] border border-gray-100 shadow-sm" title="粉色"></div>
+                            <div class="w-6 h-6 rounded-full bg-[#d6e4f0] border border-gray-100 shadow-sm" title="藍色"></div>
+                            <span class="text-gray-500 font-light tracking-widest text-[15px] pl-2 no-wrap">白・燕麥・粉・藍色系</span>
+                        </div>
+                        <p class="text-[15px] text-gray-400 leading-relaxed font-light">
+                            誠摯邀請大家以溫柔柔和的色調出席，<br>一起完成我們夢想中的婚禮畫面 ✨
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl mb-12 text-[#d4a373] tracking-[0.2em] font-medium">交通指引</h2>
+                    <div class="accordion-item border-b border-gray-100">
+                        <button class="w-full py-6 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                            <span class="text-gray-600 font-light tracking-[0.1em] text-[15px]">自行開車 PARKING</span>
+                            <svg class="h-4 w-4 transition-transform text-[#d4a373]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pb-8 text-sm text-gray-400 leading-relaxed font-light">
+                                <span class="no-wrap">酒店設有地下停車場</span>，賓客可免費停放。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-100">
+                        <button class="w-full py-6 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                            <span class="text-gray-600 font-light tracking-[0.1em] text-[15px]">大眾運輸 TRANSPORT</span>
+                            <svg class="h-4 w-4 transition-transform text-[#d4a373]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pb-8 text-sm text-gray-400 leading-relaxed font-light">
+                                搭乘 <span class="no-wrap font-medium text-gray-500">台中捷運綠線</span> 至 <span class="no-wrap font-medium text-[#d4a373]">水安宮站</span>，下車步行約 8-10 分鐘。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="py-32 px-6 bg-white">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl text-[#d4a373] tracking-[0.4em] mb-4 font-light">出席回函</h2>
+                <p class="en text-[10px] text-gray-300 tracking-[0.3em] uppercase">Guest Registration</p>
+            </div>
+
+            <!-- 隱藏的 iframe 用於背景發送 Google Forms -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { showSuccess(); }"></iframe>
+            
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSff0ClYYzoeLYmethrzai0ud8YBPilcljxq8f3oxtx9Qv-Mmw/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-12" id="weddingForm">
+                
+                <!-- 1. 姓名 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">1. 姓名 NAME</label>
+                    <input type="text" name="entry.1257607560" required placeholder="您的姓名">
+                </div>
+
+                <!-- 2. 手機 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">2. 手機 PHONE</label>
+                    <input type="tel" name="entry.66751020" required placeholder="09XX-XXX-XXX">
+                </div>
+
+                <!-- 3. 電子信箱 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">3. 電子信箱 EMAIL</label>
+                    <input type="email" name="entry.832607535" required placeholder="example@mail.com">
+                </div>
+
+                <!-- 4. 與新人關係 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">4. 與新人關係 CONNECTION</label>
+                    <select name="entry.248687439" required>
+                        <option value="" disabled selected>請選擇關係</option>
+                        <option value="男方家人/親戚">男方家人/親戚</option>
+                        <option value="男方好友">男方好友</option>
+                        <option value="男方同事">男方同事</option>
+                        <option value="女方家人/親戚">女方家人/親戚</option>
+                        <option value="女方好友">女方好友</option>
+                        <option value="女方同事">女方同事</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+
+                <!-- 5. 參加喜宴人數 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">5. 參加喜宴人數 GUESTS</label>
+                    <input type="number" name="entry.1899767690" min="0" required placeholder="不克參加請填 0">
+                </div>
+
+                <!-- 6. 出席來賓姓名 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">6. 請填寫所有出席來賓姓名(含本人) ALL NAMES</label>
+                    <textarea name="entry.428381" rows="2" placeholder="例：共3位，李小明，李大明，李小美"></textarea>
+                </div>
+
+                <!-- 7. 飲食習慣 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">7. 飲食習慣 DIET</label>
+                    <select name="entry.1600911566">
+                        <option value="葷食">葷食</option>
+                        <option value="全素">全素</option>
+                        <option value="蛋奶素">蛋奶素</option>
+                    </select>
+                </div>
+
+                <!-- 8. 是否需要兒童椅 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">8. 是否需要兒童椅 CHILD CHAIR</label>
+                    <select name="entry.685649946">
+                        <option value="不需要">不需要</option>
+                        <option value="需要">需要</option>
+                    </select>
+                </div>
+
+                <!-- 9. 是否需要寄送喜帖 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">9. 是否需要寄送喜帖 INVITATION</label>
+                    <select name="entry.1023881176">
+                        <option value="不需要">不需要</option>
+                        <option value="需要紙本喜帖">需要紙本喜帖</option>
+                        <option value="需要電子喜帖">需要電子喜帖</option>
+                    </select>
+                </div>
+
+                <!-- 10. 地址 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">10. 紙本喜帖寄送郵遞區號及寄送地址 ADDRESS</label>
+                    <input type="text" name="entry.1559442010" placeholder="請完整輸入郵遞區號與地址">
+                    <p class="text-[10px] text-[#d4a373] mt-3 font-medium italic">※ 備註：需輸入 3+2 郵遞區號</p>
+                </div>
+
+                <!-- 11. 給新人的祝福 -->
+                <div>
+                    <label class="block text-[11px] text-gray-400 mb-3 tracking-[0.15em] font-bold uppercase">11. 給新人的祝福 MESSAGE</label>
+                    <textarea name="entry.998936237" rows="4" placeholder="寫下對我們的祝福..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-6 btn-submit rounded-full font-bold shadow-lg text-[13px] mt-12 uppercase">送出回函 Submit</button>
+            </form>
+
+            <div id="success_box" class="hidden text-center py-24">
+                <div class="mb-8 flex justify-center">
+                    <div class="w-20 h-20 bg-[#fdfaf7] rounded-full flex items-center justify-center border border-[#d4a37333]">
+                        <svg class="w-8 h-8 text-[#d4a373]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl mb-6 text-[#d4a373] tracking-[0.3em] font-light">感謝您的回覆</h3>
+                <p class="text-gray-400 font-light tracking-[0.15em]">我們已收到您的資訊，期待與您見面。</p>
+                <button onclick="location.reload()" class="mt-16 text-[10px] text-gray-300 underline underline-offset-8 uppercase tracking-[0.2em]">返回主頁 Back</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 設定婚禮日期 (倒數至 2027-01-23 16:00)
+        const weddingDate = new Date("Jan 23, 2027 16:00:00").getTime();
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const dist = weddingDate - now;
+            
+            if (dist < 0) {
+                clearInterval(timer);
+                return;
+            }
+
+            document.getElementById("days").innerText = Math
